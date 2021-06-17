@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var request = require('sync-request');
 
 var uid2 = require('uid2')
 var bcrypt = require('bcrypt');
@@ -172,6 +173,13 @@ router.post('/user-lang', async function(req,res,next){
   }
 
   res.json({result})
+})
+
+router.post('/get-sources', async function(req,res,next){
+  var data = await request("GET", `https://newsapi.org/v2/sources?language=${req.body.langue}&country=${req.body.country}&apiKey=702710c211d14811af5d9bc494b9bd1a`);
+  var dataAPI = JSON.parse(data.body)
+  console.log(dataAPI)
+  res.json({dataAPI})
 })
 
 module.exports = router;

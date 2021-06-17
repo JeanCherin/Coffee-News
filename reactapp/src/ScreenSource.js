@@ -32,9 +32,16 @@ function ScreenSource(props) {
         var country = 'us'
       }
       props.changeLang(selectedLang)
-      const data = await fetch(`https://newsapi.org/v2/sources?language=${langue}&country=${country}&apiKey=702710c211d14811af5d9bc494b9bd1a`)
+     // const data = await fetch(`https://newsapi.org/v2/sources?language=${langue}&country=${country}&apiKey=702710c211d14811af5d9bc494b9bd1a`)
+     // const body = await data.json()
+      const data = await fetch('/get-sources', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `langue=${langue}&country=${country}`
+      })
       const body = await data.json()
-      setSourceList(body.sources)
+      console.log(body)
+      setSourceList(body.dataAPI.sources)
     }
 
     APIResultsLoading()
