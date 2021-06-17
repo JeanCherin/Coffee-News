@@ -1,3 +1,5 @@
+require("dotenv").config();
+require('./models/connection');
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -6,8 +8,6 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
-require('./models/connection')
 
 var app = express();
 

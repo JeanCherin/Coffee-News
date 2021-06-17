@@ -6,7 +6,7 @@ var options = {
     useNewUrlParser: true,
 }
 
-mongoose.connect('mongodb+srv://jean:test@cluster0.6o07p.mongodb.net/morning-news?retryWrites=true&w=majority',
+mongoose.connect(process.env.MONGODB_URI,
     options,
     function(err){
         console.log(err);

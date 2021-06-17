@@ -176,14 +176,15 @@ router.post('/user-lang', async function (req, res, next) {
 })
 
 router.post('/get-sources', async function (req, res, next) {
+  const api_key = process.env.API_KEY;
   var data;
   var dataAPI;
 
   if (req.body.langue && req.body.country) {
-    data = await request("GET", `https://newsapi.org/v2/sources?language=${req.body.langue}&country=${req.body.country}&apiKey=702710c211d14811af5d9bc494b9bd1a`);
+    data = await request("GET", `https://newsapi.org/v2/sources?language=${req.body.langue}&country=${req.body.country}&apiKey=${api_key}`);
     dataAPI = JSON.parse(data.body)
   } else {
-    data = await request("GET", `https://newsapi.org/v2/top-headlines?sources=${req.body.id}&apiKey=702710c211d14811af5d9bc494b9bd1a`);
+    data = await request("GET", `https://newsapi.org/v2/top-headlines?sources=${req.body.id}&apiKey=${api_key}`);
     dataAPI = JSON.parse(data.body)
   }
   
